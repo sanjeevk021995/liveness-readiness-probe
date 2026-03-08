@@ -47,8 +47,8 @@ environment {
           
           sh '''
             sed -i "s/TAG/${BUILD_NUMBER}/g" deployment.yaml
-            kubectl apply -f deployment.yaml
-            kubectl apply -f service.yaml 
+            kubectl apply -f deployment.yaml -n demo
+            kubectl apply -f service.yaml -n demo
 
          '''
          
