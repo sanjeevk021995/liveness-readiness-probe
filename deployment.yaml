@@ -18,6 +18,8 @@ spec:
         app: springboot-probe-demo
 
     spec:
+      imagePullSecrets:
+      - name: dockerhub-secret
       terminationGracePeriodSeconds: 30
 
       containers:
