@@ -1,4 +1,4 @@
-# Spring Boot Kubernetes Probes Demo (Liveness, Readiness, Startup)
+# Spring Boot Kubernetes Probes (Liveness, Readiness, Startup)
 
 This project demonstrates how to deploy a **Spring Boot application on Kubernetes with production-style health probes**.
 
@@ -172,5 +172,47 @@ During a rolling update, Kubernetes replaces old pods with new ones gradually.
 4. Old pod begins termination
 5. preStop hook delays shutdown
 6. Existing requests complete
+---
+
+##  Deploy to Kubernetes
+
+Apply the manifests to your cluster using `kubectl`:
+
+```bash
+# Apply deployment and service manifests
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+###  Verify pods
+```bash
+kubectl get pods
+```
+###  Inspect probes:
+```bash
+kubectl describe pod <pod-name>
+```
+##  Testing the Application
+Port forward service:
+```bash
+kubectl port-forward svc/springboot-probe-service 8080:80
+```
+Test endpoints:
+-   http://localhost:8080/
+-   http://localhost:8080/actuator/health
+-   http://localhost:8080/actuator/health/liveness
+-   http://localhost:8080/actuator/health/readiness
+
+## Production Best Practices
+Recommended settings in enterprise environments:
+-   Always configure **liveness** and **readiness** probes
+-   Use **startup probe** for slow applications
+-   Enable **graceful shutdown**
+-   Add **resource limits and requests**
+-   Implement **rolling update strategy**
+-   Use **Helm charts** for deployment automation
+---
+
+
+
 
 
