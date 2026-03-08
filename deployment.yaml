@@ -24,7 +24,7 @@ spec:
 
       containers:
       - name: springboot-app
-        image: yourdockerhub/springboot-k8s-probe-demo:1
+        image: sanjeevk95/springboot-k8s-probe-demo:1
 
         ports:
         - containerPort: 8080
